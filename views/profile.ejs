@@ -1,16 +1,122 @@
-<%- include('partials/header') -%>
+<%- include('partials/body-top') %>
+<%- include('partials/nav') %>
 
-  <h1 class="text-4xl mb-4">Welcome <%= user.nickname %></h1>
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
+        
 
-  <% if (user.picture) { %>
-    <img class="block py-3" src="<%= user.picture %>" width="300">
-  <% } %>
-  
-  <p class="py-3">
-    This is the content of <code class="bg-gray-200">req.user</code>.<br>
-    <strong>Note:</strong> <code class="bg-gray-200">_raw</code> and <code class="bg-gray-200">_json</code> properties have been omitted.
-  </p>
 
-  <pre class="block bg-gray-300 p-4 text-sm overflow-scroll"><%= userProfile %></pre>
 
-<%- include('partials/footer') -%>
+        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
+                <li class="me-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-styled-tab" data-tabs-target="#styled-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                </li>
+                <li class="me-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-styled-tab" data-tabs-target="#styled-dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Your services</button>
+                </li>
+                <li class="me-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Offers</button>
+                </li>
+                <li role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contacts-styled-tab" data-tabs-target="#styled-contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Contacts</button>
+                </li>
+            </ul>
+        </div>
+        <div id="default-styled-tab-content">
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Profile tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                <%- include('partials/services') %>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-settings" role="tabpanel" aria-labelledby="settings-tab">
+                <%- include('partials/quote') %>
+                <a href="/offer/purchase" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Continue with this coverage
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Contacts tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            </div>
+        </div>
+        
+
+    </div>
+</section>
+
+<!-- <script>
+    const tabsElement = document.getElementById('tabs-example');
+
+// create an array of objects with the id, trigger element (eg. button), and the content element
+const tabElements = [
+    {
+        id: 'profile',
+        triggerEl: document.querySelector('#profile-tab-example'),
+        targetEl: document.querySelector('#profile-example'),
+    },
+    {
+        id: 'dashboard',
+        triggerEl: document.querySelector('#dashboard-tab-example'),
+        targetEl: document.querySelector('#dashboard-example'),
+    },
+    {
+        id: 'settings',
+        triggerEl: document.querySelector('#settings-tab-example'),
+        targetEl: document.querySelector('#settings-example'),
+    },
+    {
+        id: 'contacts',
+        triggerEl: document.querySelector('#contacts-tab-example'),
+        targetEl: document.querySelector('#contacts-example'),
+    },
+];
+
+// options with default values
+const options = {
+    defaultTabId: 'settings',
+    activeClasses:
+        'text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500',
+    inactiveClasses:
+        'text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300',
+    onShow: () => {
+        console.log('tab is shown');
+    },
+};
+
+// instance options with default values
+const instanceOptions = {
+  id: 'tabs-example',
+  override: true
+};
+</script> -->
+
+<%- include('partials/footer') %>
+<%- include('partials/body-bottom.ejs') %>
+
+
+
+<!-- <h1 class="text-4xl">Hello World</h1> -->
+
+<!-- <% if (locals.isAuthenticated) { %>
+    <p>You are logged in. <a href="/profile" class="underline">View your profile</a>.</p>
+<% } else { %>
+    <p>You are not logged in. <a href="/login" class="underline">Login</a>.</p>
+    <form id="emailDiscovery" action="http://localhost:3000/discovery" method="post">
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" placeholder="Your Email" name="email">
+                    <label for="email">Your Email</label>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <button class="btn btn-primary w-100 py-3" type="submit">Next</button>
+            </div>
+        </div>
+    </div>
+</form>
+<% } %> -->
