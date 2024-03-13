@@ -27,7 +27,7 @@ console.log(process.env.CLIENT_ID);
 
 const port = process.env.PORT || 3001;
 if (!config.baseURL && !process.env.BASE_URL && process.env.PORT && process.env.NODE_ENV !== 'production') {
-  config.baseURL = `13.36.208.72:${port}`;
+  config.baseURL = `http://13.36.208.72/:${port}`;
 }
 
 app.use(auth(config));
