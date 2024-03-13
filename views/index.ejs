@@ -1,0 +1,25 @@
+<%- include('partials/header') -%>
+
+<h1 class="text-4xl">Hello World</h1>
+
+<% if (locals.isAuthenticated) { %>
+    <p>You are logged in. <a href="/profile" class="underline">View your profile</a>.</p>
+<% } else { %>
+    <p>You are not logged in. <a href="/login" class="underline">Login</a>.</p>
+    <form id="emailDiscovery" action="http://localhost:3000/discovery" method="post">
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" placeholder="Your Email" name="email">
+                    <label for="email">Your Email</label>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <button class="btn btn-primary w-100 py-3" type="submit">Next</button>
+            </div>
+        </div>
+    </div>
+</form>
+<% } %>
+
+<%- include('partials/footer') -%>
